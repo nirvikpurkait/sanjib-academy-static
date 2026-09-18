@@ -33,5 +33,5 @@ jobs:
       - run: pnpm exec turbo run build --filter web
 
       - run: |
-          pnpm exec vercel deploy apps/web/dist/client --prod \
+          pnpm exec vercel deploy dist/client --prod \
             --token=$VERCEL_TOKEN
