@@ -30,7 +30,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm exec turbo run build --filter web
+      - run: pnpm exec turbo run build
 
       - run: |
           pnpm exec vercel deploy dist/client --prod \
