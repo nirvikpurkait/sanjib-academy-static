@@ -1,0 +1,37 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      VERCEL_TOKEN: ${{secrets.VERCEL_TOKEN}}
+      VERCEL_PROJECT_ID: ${{secrets.VERCEL_PROJECT_ID}}
+      VERCEL_ORG_ID: ${{secrets.VERCEL_ORG_ID}}
+      TURBO_TEAM: ${{secrets.TURBO_TEAM}}
+      TURBO_TOKEN: ${{secrets.TURBO_TOKEN}}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install
+
+      - run: pnpm exec turbo run build --filter web
+
+      - run: |
+          pnpm exec vercel deploy apps/web/dist/client --prod \
+            --token=$VERCEL_TOKEN
