@@ -62,7 +62,7 @@ export function Webinar() {
     }
 
     const options = {
-      key: "rzp_test_SKjBDvEpWJncCX", // Replace with your actual Razorpay Key ID
+      key: "rzp_live_Tdopgxpn6sPJOL", // Replace with your actual Razorpay Key ID
       amount: Math.round(userAmount * 100), // Amount in paise (₹9 = 900 paise)
       currency: "INR",
       name: "SANJIB ACADEMY",
